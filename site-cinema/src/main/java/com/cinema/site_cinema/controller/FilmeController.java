@@ -2,7 +2,7 @@ package com.cinema.site_cinema.controller;
 
 import com.cinema.site_cinema.dto.FilmeDTO;
 import com.cinema.site_cinema.repository.FilmeRepository;
-import model.Filme;
+import com.cinema.site_cinema.model.Filme;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

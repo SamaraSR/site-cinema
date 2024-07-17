@@ -1,4 +1,4 @@
-package model;
+package com.cinema.site_cinema.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
