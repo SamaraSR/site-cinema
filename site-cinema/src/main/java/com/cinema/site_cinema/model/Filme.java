@@ -6,22 +6,32 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Filme")
-public class Filme implements Serializable{
+@Table(name = "filme")
+public class Filme implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_filme")
     private UUID idFilme;
 
+    @Column(name = "nome_filme")
     private String nomeFilme;
+
     private String sinopse;
     private String elenco;
+
+    @Column(name = "trailer_url")
     private String trailerUrl;
+
+    @Column(name = "data_lancamento")
     private Date dataLancamento;
+
+    @Column(name = "em_cartaz")
     private boolean emCartaz;
 
-
-    // Construtor com todos os atributos
+    public Filme() {
+        // Construtor vazio padrão necessário para JPA
+    }
 
     public Filme(String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, boolean emCartaz) {
         this.nomeFilme = nomeFilme;
@@ -32,11 +42,7 @@ public class Filme implements Serializable{
         this.emCartaz = emCartaz;
     }
 
-    public Filme() {
-
-    }
-
-    // getters e setters
+    // Getters e setters
     public UUID getIdFilme() {
         return idFilme;
     }
