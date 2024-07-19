@@ -14,11 +14,16 @@
 	<name>SiteCinema</name>
 	<description>Site de cinema onde exibirá informações de filmes e reservas para assisti-los</description>
 
+
 	<properties>
 		<java.version>22</java.version>
 	</properties>
 
+
+
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

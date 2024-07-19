@@ -54,4 +54,35 @@ public class SalaController {
         List<Sala> salas = salaRepository.findAll();
         return ResponseEntity.ok(salas);
     }
+
+    // Endpoint para atualizar uma sala
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarSala(@PathVariable Integer id, @RequestBody @Valid SalaDTO salaDTO) {
+        Optional<Sala> salaOptional = salaRepository.findById(id);
+
+        if (salaOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"A Sala não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+        }
+
+        Sala sala = salaOptional.get();
+        sala.setNumeroSala(salaDTO.getNumeroSala());
+        sala.setCapacidade(salaDTO.getCapacidade());
+        sala.setTipoExibicao(salaDTO.getTipoExibicao());
+
+        Sala salaAtualizada = salaRepository.save(sala);
+        return ResponseEntity.ok(salaAtualizada);
+    }
+
+    // Endpoint para deletar uma sala
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarSala(@PathVariable Integer id) {
+        Optional<Sala> salaOptional = salaRepository.findById(id);
+
+        if (salaOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"A Sala não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+        }
+
+        salaRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

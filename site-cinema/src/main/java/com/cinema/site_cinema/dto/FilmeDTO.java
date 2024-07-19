@@ -1,24 +1,22 @@
 package com.cinema.site_cinema.dto;
 
 import java.util.Date;
-import java.util.UUID;
-
 
 public class FilmeDTO {
 
-    private UUID idFilme;
+    private Integer idFilme;
     private String nomeFilme;
     private String sinopse;
     private String elenco;
     private String trailerUrl;
     private Date dataLancamento;
-    private boolean emCartaz;
+    private Boolean emCartaz;
 
     // Construtores
     public FilmeDTO() {
     }
 
-    public FilmeDTO(UUID idFilme, String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, boolean emCartaz) {
+    public FilmeDTO(Integer idFilme, String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, Boolean emCartaz) {
         this.idFilme = idFilme;
         this.nomeFilme = nomeFilme;
         this.sinopse = sinopse;
@@ -29,11 +27,11 @@ public class FilmeDTO {
     }
 
     // Getters e Setters
-    public UUID getIdFilme() {
+    public Integer getIdFilme() {
         return idFilme;
     }
 
-    public void setIdFilme(UUID idFilme) {
+    public void setIdFilme(Integer idFilme) {
         this.idFilme = idFilme;
     }
 
@@ -77,12 +75,11 @@ public class FilmeDTO {
         this.dataLancamento = dataLancamento;
     }
 
-    public boolean isEmCartaz() {
+    public Boolean getEmCartaz() {
         return emCartaz;
     }
 
-    public void setEmCartaz(boolean emCartaz) {
+    public void setEmCartaz(Boolean emCartaz) {
         this.emCartaz = emCartaz;
     }
 }
-

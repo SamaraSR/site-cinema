@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
 
     // Exemplo de método para buscar sessões por filme
-    List<Sessao> findByFilmeIdFilme(UUID idFilme);
+    List<Sessao> findByFilmeIdFilme(int idFilme);
 
     // Exemplo de método para buscar sessões por sala
     List<Sessao> findBySalaIdSala(Integer idSala);

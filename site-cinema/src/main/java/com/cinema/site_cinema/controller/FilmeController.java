@@ -1,18 +1,16 @@
 package com.cinema.site_cinema.controller;
 
 import com.cinema.site_cinema.dto.FilmeDTO;
-import com.cinema.site_cinema.repository.FilmeRepository;
 import com.cinema.site_cinema.model.Filme;
+import com.cinema.site_cinema.repository.FilmeRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/filmes")
@@ -29,7 +27,7 @@ public class FilmeController {
         filme.setElenco(filmeDTO.getElenco());
         filme.setTrailerUrl(filmeDTO.getTrailerUrl());
         filme.setDataLancamento(filmeDTO.getDataLancamento());
-        filme.setEmCartaz(filmeDTO.isEmCartaz());
+        filme.setEmCartaz(filmeDTO.getEmCartaz());
         return filme;
     }
 
@@ -43,7 +41,7 @@ public class FilmeController {
 
     // Endpoint para buscar um filme por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Object> buscarFilmePorId(@PathVariable UUID id) {
+    public ResponseEntity<Object> buscarFilmePorId(@PathVariable Integer id) {
         Optional<Filme> filme = filmeRepository.findById(id);
 
         if (filme.isEmpty()) {
@@ -60,25 +58,39 @@ public class FilmeController {
         return ResponseEntity.ok(filmes);
     }
 
-    // Endpoint para buscar um filme por nome
-    @GetMapping("/nome/{nome}")
-    public ResponseEntity<Filme> getFilmePorNome(@PathVariable String nome) {
-        Filme filme = filmeRepository.findByNomeFilme(nome);
-        if (filme == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(filme);
-    }
+    // Endpoint para atualizar um filme
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarFilme(@PathVariable Integer id, @RequestBody @Valid FilmeDTO filmeDTO) {
+        Optional<Filme> filmeOptional = filmeRepository.findById(id);
 
-    // Endpoint para buscar um filme por ID usando query param
-    @GetMapping("/byId")
-    public ResponseEntity<Object> buscarFilmePorIdQuery(@RequestParam UUID id) {
-        Optional<Filme> filme = filmeRepository.findById(id);
-
-        if (filme.isEmpty()) {
+        if (filmeOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Filme não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
         }
 
-        return ResponseEntity.ok(filme.get());
+        Filme filme = filmeOptional.get();
+        filme.setNomeFilme(filmeDTO.getNomeFilme());
+        filme.setSinopse(filmeDTO.getSinopse());
+        filme.setElenco(filmeDTO.getElenco());
+        filme.setTrailerUrl(filmeDTO.getTrailerUrl());
+        filme.setDataLancamento(filmeDTO.getDataLancamento());
+        filme.setEmCartaz(filmeDTO.getEmCartaz());
+
+        Filme filmeAtualizado = filmeRepository.save(filme);
+        return ResponseEntity.ok(filmeAtualizado);
+    }
+
+    // Endpoint para deletar um filme
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarFilme(@PathVariable Integer id) {
+        Optional<Filme> filmeOptional = filmeRepository.findById(id);
+
+        if (filmeOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Filme não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+        }
+
+        filmeRepository.delete(filmeOptional.get());
+        return ResponseEntity.noContent().build();
     }
 }
+
+

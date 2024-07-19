@@ -3,37 +3,37 @@ package com.cinema.site_cinema.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
-@Table(name = "filme")
+@Table(name = "Filmes")
 public class Filme implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_filme")
-    private UUID idFilme;
+    private Integer idFilme;
 
-    @Column(name = "nome_filme")
+    @Column(name = "nome_filme", length = 255, nullable = false)
     private String nomeFilme;
 
+    @Column(columnDefinition = "TEXT")
     private String sinopse;
+
+    @Column(columnDefinition = "TEXT")
     private String elenco;
 
-    @Column(name = "trailer_url")
+    @Column(name = "trailer_url", length = 255)
     private String trailerUrl;
 
     @Column(name = "data_lancamento")
+    @Temporal(TemporalType.DATE)
     private Date dataLancamento;
 
     @Column(name = "em_cartaz")
-    private boolean emCartaz;
+    private Boolean emCartaz;
 
-    public Filme() {
-        // Construtor vazio padrão necessário para JPA
-    }
-
-    public Filme(String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, boolean emCartaz) {
+    // Construtor com todos os atributos
+    public Filme(String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, Boolean emCartaz) {
         this.nomeFilme = nomeFilme;
         this.sinopse = sinopse;
         this.elenco = elenco;
@@ -42,12 +42,15 @@ public class Filme implements Serializable {
         this.emCartaz = emCartaz;
     }
 
-    // Getters e setters
-    public UUID getIdFilme() {
+    public Filme() {
+    }
+
+    // getters e setters
+    public Integer getIdFilme() {
         return idFilme;
     }
 
-    public void setIdFilme(UUID idFilme) {
+    public void setIdFilme(Integer idFilme) {
         this.idFilme = idFilme;
     }
 
@@ -91,11 +94,11 @@ public class Filme implements Serializable {
         this.dataLancamento = dataLancamento;
     }
 
-    public boolean isEmCartaz() {
+    public Boolean getEmCartaz() {
         return emCartaz;
     }
 
-    public void setEmCartaz(boolean emCartaz) {
+    public void setEmCartaz(Boolean emCartaz) {
         this.emCartaz = emCartaz;
     }
 }

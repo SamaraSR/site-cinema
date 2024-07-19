@@ -55,5 +55,36 @@ public class ReservaController {
         List<Reserva> reservas = reservaRepository.findAll();
         return ResponseEntity.ok(reservas);
     }
-}
 
+    // Endpoint para atualizar uma reserva
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> atualizarReserva(@PathVariable Integer id, @RequestBody @Valid ReservaDTO reservaDTO) {
+        Optional<Reserva> reservaOptional = reservaRepository.findById(id);
+
+        if (reservaOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"A Reserva não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+        }
+
+        Reserva reserva = reservaOptional.get();
+        reserva.setSessao(reservaDTO.getSessao());
+        reserva.setAssento(reservaDTO.getAssento());
+        reserva.setNomeCliente(reservaDTO.getNomeCliente());
+        reserva.setDataReserva(reservaDTO.getDataReserva());
+
+        Reserva reservaAtualizada = reservaRepository.save(reserva);
+        return ResponseEntity.ok(reservaAtualizada);
+    }
+
+    // Endpoint para deletar uma reserva
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarReserva(@PathVariable Integer id) {
+        Optional<Reserva> reservaOptional = reservaRepository.findById(id);
+
+        if (reservaOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"A Reserva não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+        }
+
+        reservaRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+}

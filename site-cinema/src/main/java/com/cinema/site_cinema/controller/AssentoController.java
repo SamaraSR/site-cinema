@@ -64,11 +64,11 @@ public class AssentoController {
 
     // Endpoint para atualizar um assento
     @PutMapping("/{id}")
-    public ResponseEntity<Assento> atualizarAssento(@PathVariable int id, @RequestBody @Valid AssentoDTO assentoDTO) {
+    public ResponseEntity<Object> atualizarAssento(@PathVariable int id, @RequestBody @Valid AssentoDTO assentoDTO) {
         Optional<Assento> assentoOptional = assentoRepository.findById(id);
 
         if (assentoOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Assento não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
         }
 
         Assento assento = assentoOptional.get();
@@ -85,11 +85,11 @@ public class AssentoController {
 
     // Endpoint para deletar um assento
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarAssento(@PathVariable int id) {
+    public ResponseEntity<Object> deletarAssento(@PathVariable int id) {
         Optional<Assento> assentoOptional = assentoRepository.findById(id);
 
         if (assentoOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Assento não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
         }
 
         assentoRepository.deleteById(id);

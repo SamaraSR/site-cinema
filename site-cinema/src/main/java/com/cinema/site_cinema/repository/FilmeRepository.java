@@ -4,9 +4,10 @@ import com.cinema.site_cinema.model.Filme;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public interface FilmeRepository extends JpaRepository<Filme, UUID> {
+public interface FilmeRepository extends JpaRepository<Filme, Integer> {
+
+
+    // Exemplo de método para buscar filme por nome
     Filme findByNomeFilme(String nomeFilme);
 }
