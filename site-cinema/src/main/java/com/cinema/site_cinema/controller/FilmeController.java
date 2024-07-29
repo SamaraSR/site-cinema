@@ -19,6 +19,8 @@ public class FilmeController {
     @Autowired
     private FilmeRepository filmeRepository;
 
+
+
     // Método auxiliar para converter FilmeDTO para Filme
     private Filme convertToEntity(FilmeDTO filmeDTO) {
         Filme filme = new Filme();
@@ -28,6 +30,7 @@ public class FilmeController {
         filme.setTrailerUrl(filmeDTO.getTrailerUrl());
         filme.setDataLancamento(filmeDTO.getDataLancamento());
         filme.setEmCartaz(filmeDTO.getEmCartaz());
+        filme.setImagemUrl(filmeDTO.getImagemUrl());
         return filme;
     }
 
@@ -60,11 +63,11 @@ public class FilmeController {
 
     // Endpoint para atualizar um filme
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarFilme(@PathVariable Integer id, @RequestBody @Valid FilmeDTO filmeDTO) {
+    public ResponseEntity<Filme> atualizarFilme(@PathVariable Integer id, @RequestBody @Valid FilmeDTO filmeDTO) {
         Optional<Filme> filmeOptional = filmeRepository.findById(id);
 
         if (filmeOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Filme não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+            return ResponseEntity.notFound().build();
         }
 
         Filme filme = filmeOptional.get();
@@ -74,6 +77,7 @@ public class FilmeController {
         filme.setTrailerUrl(filmeDTO.getTrailerUrl());
         filme.setDataLancamento(filmeDTO.getDataLancamento());
         filme.setEmCartaz(filmeDTO.getEmCartaz());
+        filme.setImagemUrl(filmeDTO.getImagemUrl());
 
         Filme filmeAtualizado = filmeRepository.save(filme);
         return ResponseEntity.ok(filmeAtualizado);
@@ -81,16 +85,12 @@ public class FilmeController {
 
     // Endpoint para deletar um filme
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletarFilme(@PathVariable Integer id) {
-        Optional<Filme> filmeOptional = filmeRepository.findById(id);
-
-        if (filmeOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"msg\": \"O Filme não Existe\",  \"erro\":" + HttpStatus.NOT_FOUND.value() + "}");
+    public ResponseEntity<Void> deletarFilme(@PathVariable Integer id) {
+        if (!filmeRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
         }
 
-        filmeRepository.delete(filmeOptional.get());
+        filmeRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }
-
-

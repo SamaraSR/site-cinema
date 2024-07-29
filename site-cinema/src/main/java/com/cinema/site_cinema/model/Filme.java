@@ -32,14 +32,18 @@ public class Filme implements Serializable {
     @Column(name = "em_cartaz")
     private Boolean emCartaz;
 
+    @Column(name = "imagem_url", length = 255)
+    private String imagemUrl;
+
     // Construtor com todos os atributos
-    public Filme(String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, Boolean emCartaz) {
+    public Filme(String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, Boolean emCartaz, String imagemUrl) {
         this.nomeFilme = nomeFilme;
         this.sinopse = sinopse;
         this.elenco = elenco;
         this.trailerUrl = trailerUrl;
         this.dataLancamento = dataLancamento;
         this.emCartaz = emCartaz;
+        this.imagemUrl = imagemUrl;
     }
 
     public Filme() {
@@ -100,5 +104,13 @@ public class Filme implements Serializable {
 
     public void setEmCartaz(Boolean emCartaz) {
         this.emCartaz = emCartaz;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 }

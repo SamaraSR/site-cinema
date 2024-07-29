@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #314F78;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #0F154B;
+    height: 80px;
+    box-shadow: 0 0 25px 0 black;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+#img-cinema {
+    height: 50px;
+}
+
+/* legenda hover home */
+
+.cont {
+    position: relative;
+}
+
+.caption-icon {
+    position: absolute;
+    bottom: -30px;
+    left: -7px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.cont:hover .caption-icon {
+    opacity: 1;
+}
+
+#trailer-container {
+    margin-right: 20px;
+}
+
+.info-filme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-filme p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.button-sessoes {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.btn-sessoes {
+    background-color: darkorange;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+}
+
+.btn-sessoes:hover {
+    background-color: orangered;
+}
+
+nav {
+    margin-left: auto;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: darkorange;
+}
+
+footer {
+    background-color: #0F154B;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-top: auto;
+}
+
+.footer a {
+    color: #fff;
+    box-shadow: 0 0 25px 0 black;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.social-icons img.youtube {
+    width: 30px;
+    height: 30px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+h1#nome-filme {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#trailer-container iframe {
+    width: 640px;
+    height: 460px;
+}
+

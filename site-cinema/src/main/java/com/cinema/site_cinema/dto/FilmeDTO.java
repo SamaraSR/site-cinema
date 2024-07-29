@@ -1,39 +1,32 @@
 package com.cinema.site_cinema.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Date;
 
 public class FilmeDTO {
 
-    private Integer idFilme;
+    @NotNull(message = "O nome do filme é obrigatório")
+    @Size(max = 255, message = "O nome do filme deve ter no máximo 255 caracteres")
     private String nomeFilme;
+
     private String sinopse;
+
     private String elenco;
+
+    @Size(max = 255, message = "A URL do trailer deve ter no máximo 255 caracteres")
     private String trailerUrl;
+
+    @NotNull(message = "A data de lançamento é obrigatória")
     private Date dataLancamento;
+
+    @NotNull(message = "O campo 'em cartaz' é obrigatório")
     private Boolean emCartaz;
 
-    // Construtores
-    public FilmeDTO() {
-    }
-
-    public FilmeDTO(Integer idFilme, String nomeFilme, String sinopse, String elenco, String trailerUrl, Date dataLancamento, Boolean emCartaz) {
-        this.idFilme = idFilme;
-        this.nomeFilme = nomeFilme;
-        this.sinopse = sinopse;
-        this.elenco = elenco;
-        this.trailerUrl = trailerUrl;
-        this.dataLancamento = dataLancamento;
-        this.emCartaz = emCartaz;
-    }
+    @Size(max = 255, message = "A URL da imagem deve ter no máximo 255 caracteres")
+    private String imagemUrl;
 
     // Getters e Setters
-    public Integer getIdFilme() {
-        return idFilme;
-    }
-
-    public void setIdFilme(Integer idFilme) {
-        this.idFilme = idFilme;
-    }
 
     public String getNomeFilme() {
         return nomeFilme;
@@ -81,5 +74,13 @@ public class FilmeDTO {
 
     public void setEmCartaz(Boolean emCartaz) {
         this.emCartaz = emCartaz;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 }

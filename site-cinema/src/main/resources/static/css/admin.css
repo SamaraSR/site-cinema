@@ -1,0 +1,217 @@
+body {
+    background-color: #314F78;
+    font-family: Arial, sans-serif;
+}
+
+.header-container {
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #0F154B;
+    box-shadow: 0 0 25px 0 black;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.btn-sair {
+    display: flex;
+    align-items: center;
+}
+
+.btn-sair img {
+    height: 30px;
+    cursor: pointer;
+}
+
+.btn-sair img:hover {
+    content: url('../img/closeHover.png');
+}
+
+#img-cinema {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.nome{
+    text-align: center;
+}
+
+.table-title, .tt {
+    margin: 50px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+.titulo{
+    text-align: center;
+    color: #0F154B;
+    font-size: 17px;
+}
+
+.tabela {
+    margin-bottom: 20px;
+}
+
+.tabela table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela th, .tabela td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.tabela tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination button.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.insert {
+    margin-top: 20px;
+}
+
+.insert form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.insert .form-label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.insert .form-control {
+    margin-bottom: 15px;
+}
+
+.collapsible {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.collapse-table, .collapse-form {
+    margin-top: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table th, .table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.collapse-row {
+    display: none;
+}
+
+.collapse-row.active {
+    display: table-row;
+}
+
+.btn.btn-info{
+    font-size: 12px;
+    font-weight: normal;
+    background-color: #007bff;
+}
+
+.btn.btn-danger{
+    font-size: 12px;
+    font-weight: normal;
+    background-color: red;
+}
+
+.btn.btn-success{
+    font-size: 12px;
+    font-weight: normal;
+    background-color: green;
+}
+
+.btn-info, .btn-danger, .btn-success {
+    margin: 0 5px;
+}
+
+.info-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.info-buttons .btn {
+    margin: 0 5px;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn {
+    background-color: darkorange;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: orangered;
+}
